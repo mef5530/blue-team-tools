@@ -4,7 +4,7 @@ iptables-save > backup-iptables.rules
 iptables-restore < lockdown-iptables.rules
 (sleep 300 && iptables-restore < backup-iptables.rules) &
 
-echo "Press enter"
+echo "type confirm"
 read -t 60 confirm
 
 if [ "$confirm" ]; then
