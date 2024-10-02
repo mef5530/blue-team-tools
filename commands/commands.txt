@@ -1,0 +1,43 @@
+apt install rkhunter -y
+rkhunter --update
+rkhunter --check --sk
+
+# list cron jobs
+for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done
+
+cat /etc/crontab
+ls -la /etc/cron.*
+
+atq
+
+#remove cron job for user
+crontab -u <uname> -r
+
+#delete cron job/scripts
+rm -f /etc/cron.d/<evil>
+rm -f /etc/systemd/system/<evil>
+
+#startup scripts
+ls -la /etc/init.d
+ls -la /etc/systemd/system/
+
+#list proc
+ps aus
+
+#check hidden procs
+lsof | grep -v '^root'
+
+#inotify
+apt install inotify-tools -y
+inotifywait -m <dir1> <dir2> ...
+
+#chkrootkit
+apt instal chkrootkit -y
+chkrootkit
+
+#block ip
+iptables -A INPUT -s <evilip> -j DROP
+
+#tripwire
+apt install tripwire -y
+tripwire --init
