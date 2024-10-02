@@ -4,7 +4,7 @@ table inet filter {
     chain input {
         type filter hook input priority 0; policy drop;
         iif "lo" accept
-        ct state established,related accept
+#        ct state established,related accept # KILL EXISTING CONNECTIONS
 
         tcp dport {21114, 21115, 21116, 21117, 21118, 21119, 25565} accept
         udp dport 21116 accept
@@ -16,7 +16,7 @@ table inet filter {
     chain output {
         type filter hook output priority 0; policy drop;
         oif "lo" accept
-        ct state established,related accept
+#        ct state established,related accept # KILL EXISTING CONNECTIONS
 
         tcp sport {21114, 21115, 21116, 21117, 21118, 21119, 25565} accept
         udp dport {53, 21116} accept
