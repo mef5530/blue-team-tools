@@ -2,11 +2,11 @@
 
 nft list ruleset > backup-nft.nft
 nft -f lockdown-nftables.nft
-(sleep 300 & nft -f backup-nft.nft) &
+(sleep 60 & nft -f backup-nft.nft) &
 REVERT_PID=$!
 
 echo "type confirm"
-read -t 300 confirm
+read -t 60 confirm
 
 if [ "$confirm" ]; then
   echo "w!"
