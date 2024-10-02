@@ -27,10 +27,10 @@
 -A OUTPUT -p tcp --sport 25565 -j ACCEPT
 -A OUTPUT -p udp --dport 53 -j ACCEPT
 # -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
--A INPUT -j DROP
--A OUTPUT -j DROP
-
 -A OUTPUT -j LOG --log-prefix "iptables-blocked-out: "
 -A INPUT -j LOG --log-prefix "iptables-blocked-in: "
+
+-A INPUT -j DROP
+-A OUTPUT -j DROP
 
 COMMIT
