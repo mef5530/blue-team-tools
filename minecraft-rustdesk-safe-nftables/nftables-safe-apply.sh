@@ -2,7 +2,7 @@
 
 nft list ruleset > backup-nft.nft
 nft -f lockdown-nftables.nft
-(sleep 60 & nft -f backup-nft.nft) &
+(sleep 60 && nft flush ruleset && nft -f backup-nft.nft) &
 REVERT_PID=$!
 
 echo "type confirm"
