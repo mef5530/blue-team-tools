@@ -7,13 +7,30 @@
 -A OUTPUT -o lo -j ACCEPT
 -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+-A INPUT -p tcp --dport 21114 -j ACCEPT
+-A OUTPUT -p tcp --sport 21114 -j ACCEPT
 -A INPUT -p tcp --dport 21115 -j ACCEPT
 -A OUTPUT -p tcp --sport 21115 -j ACCEPT
+-A INPUT -p tcp --dport 21116 -j ACCEPT
+-A OUTPUT -p tcp --sport 21116 -j ACCEPT
+-A INPUT -p tcp --dport 21117 -j ACCEPT
+-A OUTPUT -p tcp --sport 21117 -j ACCEPT
+-A INPUT -p tcp --dport 21118 -j ACCEPT
+-A OUTPUT -p tcp --sport 21118 -j ACCEPT
+-A INPUT -p tcp --dport 21119 -j ACCEPT
+-A OUTPUT -p tcp --sport 21119 -j ACCEPT
+-A INPUT -p udp --dport 21116 -j ACCEPT
+-A OUTPUT -p udp --sport 21116 -j ACCEPT
+
 -A INPUT -p tcp --dport 25565 -j ACCEPT
 -A OUTPUT -p tcp --sport 25565 -j ACCEPT
 -A OUTPUT -p udp --dport 53 -j ACCEPT
 # -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
 -A INPUT -j DROP
 -A OUTPUT -j DROP
+
+-A OUTPUT -j LOG --log-prefix "iptables-blocked-out: "
+-A INPUT -j LOG --log-prefix "iptables-blocked-in: "
 
 COMMIT
